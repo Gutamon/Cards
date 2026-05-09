@@ -343,9 +343,22 @@
         }
 
         .card-message {
-            font-size: 13px;
+            font-size: 14px;
             color: #7A5C4A;
             margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        #markdownContent h1 {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--brown);
+            margin-bottom: 1rem;
+        }
+
+        #markdownContent p {
+            margin-bottom: 0.8rem;
         }
 
         .card-divider {
@@ -567,28 +580,9 @@
 
                     <!-- Card body text -->
                     <div class="card-body">
-                        <p class="card-greeting">親愛的媽媽，</p><br>
-                        <p class="card-message">
-                            這一次想用不一樣的方式——親手寫程式<br>
-                            希望即使今年母親節無法見面，<br>
-                            也能傳遞一份手作的溫度。<br><br>
-
-                            2026年對我來說，又是人生的重要階段。<br>
-                            一邊實習、一邊忙研究所，<br>
-                            最後都得到了美好的結果。<br>
-                            但同時也不可避免地離家更遠了一些。<br><br>
-
-                            雖然距離拉開了，<br>
-                            你們的支持與鼓勵仍然伴隨著我，<br>
-                            同時，我也隨著自己的新視野學習成長，<br>
-                            慢慢成為一個有想法、有抱負的成熟大人。<br>
-                            一個自信且值得託付的人。<br>
-                            最重要的，一個不讓家人操心的人。<br><br>
-
-                            希望妳一如既往每天都平安、開心。<br>
-                            如果有任何因距離無法做到的事都可以跟我分享，<br>
-                            說不定可以幫妳實現ㄛ!<br>
-                        </p>
+                        <div id="markdownContent" class="card-message">
+                            <!-- Markdown will be injected here -->
+                        </div>
                         <hr class="card-divider">
                         <div class="card-signature">
                             <svg class="sig-flower" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
@@ -631,8 +625,45 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
         let isOpen = false;
+
+        // Content management
+        const config = {
+            mom: { file: 'mom.md', hint: '✦ 給親愛的媽 。 輕觸打開 ✦' },
+            grandma: { file: 'grandma.md', hint: '✦ 給親愛的外婆 。 輕觸打開 ✦' }
+        };
+
+        async function loadContent() {
+            const hash = window.location.hash.replace('#', '');
+            const settings = config[hash];
+            const envWrap = document.querySelector('.envelope-wrap');
+
+            // 單純訪問無效，須有正確的 hash
+            if (!settings) {
+                envWrap.style.display = 'none';
+                const msg = document.createElement('div');
+                msg.style.cssText = "position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:#C8586A; font-family:'Noto Serif TC',serif; font-size:18px; font-weight:700; letter-spacing:0.1em; z-index:100; text-align:center; line-height:1.8;";
+                msg.innerHTML = "這是一份專屬的賀卡<br>請使用正確的連結開啟";
+                document.body.appendChild(msg);
+                return;
+            }
+
+            document.getElementById('peekHint').textContent = settings.hint;
+
+            try {
+                const response = await fetch(settings.file);
+                if (!response.ok) throw new Error('File not found');
+                const text = await response.text();
+                document.getElementById('markdownContent').innerHTML = marked.parse(text);
+            } catch (err) {
+                console.error('Failed to load markdown:', err);
+                document.getElementById('markdownContent').innerHTML = '<p>內容載入失敗，請稍後再試。</p>';
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', loadContent);
 
         function openCard() {
             if (isOpen) return;
