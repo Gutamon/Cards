@@ -48,10 +48,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 4rem 1.25rem;
+            justify-content: flex-start;
+            padding: 2rem 1.25rem;
             position: relative;
-            overflow: hidden;
         }
 
         /* Background petals */
@@ -108,13 +107,15 @@
             width: 100%;
             max-width: 380px;
             perspective: 1000px;
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), padding-top 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             padding-top: 40px;
-            padding-bottom: 40px;
+            margin-top: auto;
+            margin-bottom: auto;
         }
 
         .envelope-wrap.up {
-            transform: translateY(-60px);
+            padding-top: 800px;
+            transform: translateY(0);
         }
 
         .envelope {
@@ -124,6 +125,7 @@
             cursor: pointer;
             transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             filter: drop-shadow(0 8px 24px rgba(92, 61, 46, 0.18));
+            z-index: 2;
         }
 
         .envelope:hover {
@@ -140,6 +142,7 @@
             background: linear-gradient(160deg, #F9EFE2 0%, #F0DFC8 100%);
             border-radius: 8px;
             border: 1.5px solid #DEC9A8;
+            z-index: 1;
         }
 
         /* Flap */
@@ -151,8 +154,8 @@
             height: 52%;
             transform-origin: top center;
             transform-style: preserve-3d;
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 5;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s 0.3s;
+            z-index: 4;
         }
 
         .env-flap-front {
@@ -188,6 +191,7 @@
             height: 55%;
             background: linear-gradient(0deg, #D6BA94 0%, #E8D0AE 100%);
             clip-path: polygon(0 100%, 50% 0, 100% 100%);
+            z-index: 3;
         }
 
         .env-left {
@@ -198,6 +202,7 @@
             width: 52%;
             background: linear-gradient(90deg, #DCBF98 0%, #EDD5B5 100%);
             clip-path: polygon(0 0, 100% 50%, 0 100%);
+            z-index: 3;
         }
 
         .env-right {
@@ -208,6 +213,7 @@
             width: 52%;
             background: linear-gradient(-90deg, #DCBF98 0%, #EDD5B5 100%);
             clip-path: polygon(100% 0, 0 50%, 100% 100%);
+            z-index: 3;
         }
 
         /* Wax seal */
@@ -239,6 +245,7 @@
 
         .envelope.open .env-flap {
             transform: rotateX(-180deg);
+            z-index: 1;
         }
 
         .envelope.open .wax-seal {
@@ -265,7 +272,7 @@
 
         /* ── CARD ── */
         .card-container {
-            width: 100%;
+            width: 95%;
             max-width: 380px;
             margin-bottom: 0;
             overflow: hidden;
@@ -273,10 +280,14 @@
             opacity: 0;
             transition: max-height 1.0s cubic-bezier(0.4, 0, 0.2, 1),
                 opacity 0.6s ease 0.3s,
-                margin-bottom 0.5s ease;
-            position: relative;
-            z-index: 10;
+                margin-bottom 0.5s ease,
+                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            position: absolute;
+            bottom: 20px;
+            left: 2.6%;
+            z-index: 2;
             pointer-events: none;
+            transform: translateY(0);
         }
 
         .card-container.open {
@@ -284,11 +295,12 @@
             opacity: 1;
             margin-bottom: 0;
             pointer-events: auto;
+            transform: translateY(-215px);
         }
 
         .card {
             background: white;
-            border-radius: 16px;
+            border-radius: 8px;
             overflow: hidden;
             border: 1px solid #F0DDD5;
             box-shadow: 0 12px 40px rgba(92, 61, 46, 0.12);
@@ -442,7 +454,7 @@
             text-decoration: underline;
             text-underline-offset: 3px;
             position: relative;
-            z-index: 15;
+            z-index: 5;
         }
 
         .close-hint.show {
@@ -476,140 +488,144 @@
 
         <!-- Envelope -->
         <div class="envelope-wrap">
-            <!-- Card inside (Move to top) -->
-            <div class="card-container" id="cardContainer">
-                <div class="card">
-
-                    <!-- Header with flower illustration -->
-                    <div class="card-header">
-                        <svg class="flower-deco" viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Leaves -->
-                            <ellipse cx="130" cy="140" rx="35" ry="14" fill="#A3C4A8" opacity="0.7"
-                                transform="rotate(-35 130 140)" />
-                            <ellipse cx="250" cy="145" rx="30" ry="12" fill="#85AD8A" opacity="0.65"
-                                transform="rotate(30 250 145)" />
-                            <ellipse cx="190" cy="155" rx="20" ry="8" fill="#B5D4BA" opacity="0.6"
-                                transform="rotate(-5 190 155)" />
-                            <!-- Stems -->
-                            <line x1="150" y1="160" x2="155" y2="80" stroke="#85AD8A" stroke-width="2" opacity="0.6" />
-                            <line x1="195" y1="160" x2="195" y2="60" stroke="#92B896" stroke-width="2.5"
-                                opacity="0.65" />
-                            <line x1="235" y1="160" x2="228" y2="85" stroke="#85AD8A" stroke-width="2" opacity="0.6" />
-
-                            <!-- Flower 1 (left) -->
-                            <g transform="translate(155,80)">
-                                <ellipse cx="0" cy="-18" rx="10" ry="18" fill="#F4A7B4" opacity="0.85" />
-                                <ellipse cx="0" cy="-18" rx="10" ry="18" fill="#F4A7B4" opacity="0.85"
-                                    transform="rotate(45)" />
-                                <ellipse cx="0" cy="-18" rx="10" ry="18" fill="#EE8EA0" opacity="0.75"
-                                    transform="rotate(90)" />
-                                <ellipse cx="0" cy="-18" rx="10" ry="18" fill="#F4A7B4" opacity="0.85"
-                                    transform="rotate(135)" />
-                                <ellipse cx="0" cy="-18" rx="10" ry="18" fill="#EE8EA0" opacity="0.7"
-                                    transform="rotate(180)" />
-                                <ellipse cx="0" cy="-18" rx="10" ry="18" fill="#F4A7B4" opacity="0.8"
-                                    transform="rotate(225)" />
-                                <ellipse cx="0" cy="-18" rx="10" ry="18" fill="#EE8EA0" opacity="0.75"
-                                    transform="rotate(270)" />
-                                <ellipse cx="0" cy="-18" rx="10" ry="18" fill="#F4A7B4" opacity="0.8"
-                                    transform="rotate(315)" />
-                                <circle cx="0" cy="0" r="10" fill="#F9D55A" />
-                                <circle cx="0" cy="0" r="6" fill="#EDBD3A" />
-                            </g>
-
-                            <!-- Flower 2 (center, big) -->
-                            <g transform="translate(195,58)">
-                                <ellipse cx="0" cy="-20" rx="12" ry="20" fill="#E87D94" opacity="0.82" />
-                                <ellipse cx="0" cy="-20" rx="12" ry="20" fill="#F0A0B4" opacity="0.78"
-                                    transform="rotate(40)" />
-                                <ellipse cx="0" cy="-20" rx="12" ry="20" fill="#E87D94" opacity="0.82"
-                                    transform="rotate(80)" />
-                                <ellipse cx="0" cy="-20" rx="12" ry="20" fill="#F0A0B4" opacity="0.78"
-                                    transform="rotate(120)" />
-                                <ellipse cx="0" cy="-20" rx="12" ry="20" fill="#E87D94" opacity="0.82"
-                                    transform="rotate(160)" />
-                                <ellipse cx="0" cy="-20" rx="12" ry="20" fill="#F0A0B4" opacity="0.78"
-                                    transform="rotate(200)" />
-                                <ellipse cx="0" cy="-20" rx="12" ry="20" fill="#E87D94" opacity="0.82"
-                                    transform="rotate(240)" />
-                                <ellipse cx="0" cy="-20" rx="12" ry="20" fill="#F0A0B4" opacity="0.78"
-                                    transform="rotate(280)" />
-                                <ellipse cx="0" cy="-20" rx="12" ry="20" fill="#E87D94" opacity="0.82"
-                                    transform="rotate(320)" />
-                                <circle cx="0" cy="0" r="12" fill="#F9D55A" />
-                                <circle cx="0" cy="0" r="7" fill="#EDBD3A" />
-                            </g>
-
-                            <!-- Flower 3 (right) -->
-                            <g transform="translate(228,85)">
-                                <ellipse cx="0" cy="-16" rx="9" ry="16" fill="#F4B8C8" opacity="0.82" />
-                                <ellipse cx="0" cy="-16" rx="9" ry="16" fill="#EDA0B2" opacity="0.75"
-                                    transform="rotate(45)" />
-                                <ellipse cx="0" cy="-16" rx="9" ry="16" fill="#F4B8C8" opacity="0.82"
-                                    transform="rotate(90)" />
-                                <ellipse cx="0" cy="-16" rx="9" ry="16" fill="#EDA0B2" opacity="0.75"
-                                    transform="rotate(135)" />
-                                <ellipse cx="0" cy="-16" rx="9" ry="16" fill="#F4B8C8" opacity="0.82"
-                                    transform="rotate(180)" />
-                                <ellipse cx="0" cy="-16" rx="9" ry="16" fill="#EDA0B2" opacity="0.75"
-                                    transform="rotate(225)" />
-                                <ellipse cx="0" cy="-16" rx="9" ry="16" fill="#F4B8C8" opacity="0.82"
-                                    transform="rotate(270)" />
-                                <ellipse cx="0" cy="-16" rx="9" ry="16" fill="#EDA0B2" opacity="0.75"
-                                    transform="rotate(315)" />
-                                <circle cx="0" cy="0" r="9" fill="#F9D55A" />
-                                <circle cx="0" cy="0" r="5" fill="#EDBD3A" />
-                            </g>
-
-                            <!-- Small scattered petals -->
-                            <circle cx="80" cy="40" r="5" fill="#F4B8C8" opacity="0.5" />
-                            <circle cx="88" cy="52" r="3" fill="#E87D94" opacity="0.4" />
-                            <circle cx="300" cy="35" r="4" fill="#F4A7B4" opacity="0.5" />
-                            <circle cx="315" cy="50" r="3" fill="#E87D94" opacity="0.4" />
-                            <circle cx="60" cy="90" r="4" fill="#F9D55A" opacity="0.45" />
-                            <circle cx="320" cy="90" r="5" fill="#F9D55A" opacity="0.4" />
-
-                            <!-- Small hearts -->
-                            <text x="70" y="65" font-size="14" fill="#E87D94" opacity="0.45"
-                                text-anchor="middle">♡</text>
-                            <text x="310" y="70" font-size="12" fill="#E87D94" opacity="0.4"
-                                text-anchor="middle">♡</text>
-                        </svg>
-                        <div class="card-header-title">母親節快樂</div>
-                    </div>
-
-                    <!-- Card body text -->
-                    <div class="card-body">
-                        <div id="markdownContent" class="card-message">
-                            <!-- Markdown will be injected here -->
-                        </div>
-                        <hr class="card-divider">
-                        <div class="card-signature">
-                            <svg class="sig-flower" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
-                                <g transform="translate(18,18)">
-                                    <ellipse cx="0" cy="-10" rx="5" ry="10" fill="#E87D94" />
-                                    <ellipse cx="0" cy="-10" rx="5" ry="10" fill="#EDA0B2" transform="rotate(60)" />
-                                    <ellipse cx="0" cy="-10" rx="5" ry="10" fill="#E87D94" transform="rotate(120)" />
-                                    <ellipse cx="0" cy="-10" rx="5" ry="10" fill="#EDA0B2" transform="rotate(180)" />
-                                    <ellipse cx="0" cy="-10" rx="5" ry="10" fill="#E87D94" transform="rotate(240)" />
-                                    <ellipse cx="0" cy="-10" rx="5" ry="10" fill="#EDA0B2" transform="rotate(300)" />
-                                    <circle cx="0" cy="0" r="6" fill="#F9D55A" />
-                                </g>
-                            </svg>
-                            <div>
-                                <div class="sig-text">獻上滿滿的愛 ♡</div>
-                                <div class="sig-sub">寶貝綸親筆</div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
             <p class="close-hint" id="closeHint" onclick="closeCard()"> ↓ 收回信封</p>
-
             <!-- Envelope (Move to bottom) -->
             <div class="envelope" id="envelope" onclick="openCard()" role="button" aria-label="點擊開啟母親節賀卡">
+                <!-- Card inside (Move to top) -->
+                <div class="card-container" id="cardContainer">
+                    <div class="card">
+
+                        <!-- Header with flower illustration -->
+                        <div class="card-header">
+                            <svg class="flower-deco" viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Leaves -->
+                                <ellipse cx="130" cy="140" rx="35" ry="14" fill="#A3C4A8" opacity="0.7"
+                                    transform="rotate(-35 130 140)" />
+                                <ellipse cx="250" cy="145" rx="30" ry="12" fill="#85AD8A" opacity="0.65"
+                                    transform="rotate(30 250 145)" />
+                                <ellipse cx="190" cy="155" rx="20" ry="8" fill="#B5D4BA" opacity="0.6"
+                                    transform="rotate(-5 190 155)" />
+                                <!-- Stems -->
+                                <line x1="150" y1="160" x2="155" y2="80" stroke="#85AD8A" stroke-width="2"
+                                    opacity="0.6" />
+                                <line x1="195" y1="160" x2="195" y2="60" stroke="#92B896" stroke-width="2.5"
+                                    opacity="0.65" />
+                                <line x1="235" y1="160" x2="228" y2="85" stroke="#85AD8A" stroke-width="2"
+                                    opacity="0.6" />
+
+                                <!-- Flower 1 (left) -->
+                                <g transform="translate(155,80)">
+                                    <ellipse cx="0" cy="-18" rx="10" ry="18" fill="#F4A7B4" opacity="0.85" />
+                                    <ellipse cx="0" cy="-18" rx="10" ry="18" fill="#F4A7B4" opacity="0.85"
+                                        transform="rotate(45)" />
+                                    <ellipse cx="0" cy="-18" rx="10" ry="18" fill="#EE8EA0" opacity="0.75"
+                                        transform="rotate(90)" />
+                                    <ellipse cx="0" cy="-18" rx="10" ry="18" fill="#F4A7B4" opacity="0.85"
+                                        transform="rotate(135)" />
+                                    <ellipse cx="0" cy="-18" rx="10" ry="18" fill="#EE8EA0" opacity="0.7"
+                                        transform="rotate(180)" />
+                                    <ellipse cx="0" cy="-18" rx="10" ry="18" fill="#F4A7B4" opacity="0.8"
+                                        transform="rotate(225)" />
+                                    <ellipse cx="0" cy="-18" rx="10" ry="18" fill="#EE8EA0" opacity="0.75"
+                                        transform="rotate(270)" />
+                                    <ellipse cx="0" cy="-18" rx="10" ry="18" fill="#F4A7B4" opacity="0.8"
+                                        transform="rotate(315)" />
+                                    <circle cx="0" cy="0" r="10" fill="#F9D55A" />
+                                    <circle cx="0" cy="0" r="6" fill="#EDBD3A" />
+                                </g>
+
+                                <!-- Flower 2 (center, big) -->
+                                <g transform="translate(195,58)">
+                                    <ellipse cx="0" cy="-20" rx="12" ry="20" fill="#E87D94" opacity="0.82" />
+                                    <ellipse cx="0" cy="-20" rx="12" ry="20" fill="#F0A0B4" opacity="0.78"
+                                        transform="rotate(40)" />
+                                    <ellipse cx="0" cy="-20" rx="12" ry="20" fill="#E87D94" opacity="0.82"
+                                        transform="rotate(80)" />
+                                    <ellipse cx="0" cy="-20" rx="12" ry="20" fill="#F0A0B4" opacity="0.78"
+                                        transform="rotate(120)" />
+                                    <ellipse cx="0" cy="-20" rx="12" ry="20" fill="#E87D94" opacity="0.82"
+                                        transform="rotate(160)" />
+                                    <ellipse cx="0" cy="-20" rx="12" ry="20" fill="#F0A0B4" opacity="0.78"
+                                        transform="rotate(200)" />
+                                    <ellipse cx="0" cy="-20" rx="12" ry="20" fill="#E87D94" opacity="0.82"
+                                        transform="rotate(240)" />
+                                    <ellipse cx="0" cy="-20" rx="12" ry="20" fill="#F0A0B4" opacity="0.78"
+                                        transform="rotate(280)" />
+                                    <ellipse cx="0" cy="-20" rx="12" ry="20" fill="#E87D94" opacity="0.82"
+                                        transform="rotate(320)" />
+                                    <circle cx="0" cy="0" r="12" fill="#F9D55A" />
+                                    <circle cx="0" cy="0" r="7" fill="#EDBD3A" />
+                                </g>
+
+                                <!-- Flower 3 (right) -->
+                                <g transform="translate(228,85)">
+                                    <ellipse cx="0" cy="-16" rx="9" ry="16" fill="#F4B8C8" opacity="0.82" />
+                                    <ellipse cx="0" cy="-16" rx="9" ry="16" fill="#EDA0B2" opacity="0.75"
+                                        transform="rotate(45)" />
+                                    <ellipse cx="0" cy="-16" rx="9" ry="16" fill="#F4B8C8" opacity="0.82"
+                                        transform="rotate(90)" />
+                                    <ellipse cx="0" cy="-16" rx="9" ry="16" fill="#EDA0B2" opacity="0.75"
+                                        transform="rotate(135)" />
+                                    <ellipse cx="0" cy="-16" rx="9" ry="16" fill="#F4B8C8" opacity="0.82"
+                                        transform="rotate(180)" />
+                                    <ellipse cx="0" cy="-16" rx="9" ry="16" fill="#EDA0B2" opacity="0.75"
+                                        transform="rotate(225)" />
+                                    <ellipse cx="0" cy="-16" rx="9" ry="16" fill="#F4B8C8" opacity="0.82"
+                                        transform="rotate(270)" />
+                                    <ellipse cx="0" cy="-16" rx="9" ry="16" fill="#EDA0B2" opacity="0.75"
+                                        transform="rotate(315)" />
+                                    <circle cx="0" cy="0" r="9" fill="#F9D55A" />
+                                    <circle cx="0" cy="0" r="5" fill="#EDBD3A" />
+                                </g>
+
+                                <!-- Small scattered petals -->
+                                <circle cx="80" cy="40" r="5" fill="#F4B8C8" opacity="0.5" />
+                                <circle cx="88" cy="52" r="3" fill="#E87D94" opacity="0.4" />
+                                <circle cx="300" cy="35" r="4" fill="#F4A7B4" opacity="0.5" />
+                                <circle cx="315" cy="50" r="3" fill="#E87D94" opacity="0.4" />
+                                <circle cx="60" cy="90" r="4" fill="#F9D55A" opacity="0.45" />
+                                <circle cx="320" cy="90" r="5" fill="#F9D55A" opacity="0.4" />
+
+                                <!-- Small hearts -->
+                                <text x="70" y="65" font-size="14" fill="#E87D94" opacity="0.45"
+                                    text-anchor="middle">♡</text>
+                                <text x="310" y="70" font-size="12" fill="#E87D94" opacity="0.4"
+                                    text-anchor="middle">♡</text>
+                            </svg>
+                            <div class="card-header-title">母親節快樂</div>
+                        </div>
+
+                        <!-- Card body text -->
+                        <div class="card-body">
+                            <div id="markdownContent" class="card-message">
+                                <!-- Markdown will be injected here -->
+                            </div>
+                            <hr class="card-divider">
+                            <div class="card-signature">
+                                <svg class="sig-flower" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+                                    <g transform="translate(18,18)">
+                                        <ellipse cx="0" cy="-10" rx="5" ry="10" fill="#E87D94" />
+                                        <ellipse cx="0" cy="-10" rx="5" ry="10" fill="#EDA0B2" transform="rotate(60)" />
+                                        <ellipse cx="0" cy="-10" rx="5" ry="10" fill="#E87D94"
+                                            transform="rotate(120)" />
+                                        <ellipse cx="0" cy="-10" rx="5" ry="10" fill="#EDA0B2"
+                                            transform="rotate(180)" />
+                                        <ellipse cx="0" cy="-10" rx="5" ry="10" fill="#E87D94"
+                                            transform="rotate(240)" />
+                                        <ellipse cx="0" cy="-10" rx="5" ry="10" fill="#EDA0B2"
+                                            transform="rotate(300)" />
+                                        <circle cx="0" cy="0" r="6" fill="#F9D55A" />
+                                    </g>
+                                </svg>
+                                <div>
+                                    <div class="sig-text">獻上滿滿的愛 ♡</div>
+                                    <div class="sig-sub">寶貝綸親筆</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
                 <div class="env-body"></div>
                 <div class="env-left"></div>
                 <div class="env-right"></div>
@@ -620,7 +636,6 @@
                 </div>
                 <div class="wax-seal">♡</div>
             </div>
-
             <p class="peek-hint" id="peekHint">✦ 給親愛的媽 。 輕觸打開 ✦</p>
         </div>
     </div>
