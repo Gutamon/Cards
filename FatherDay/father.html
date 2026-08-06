@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>母親節賀卡</title>
+    <title>父親節賀卡</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400&display=swap"
         rel="stylesheet">
@@ -18,15 +18,15 @@
         }
 
         :root {
-            --rose: #C8586A;
-            --rose-light: #F2C4CB;
-            --rose-pale: #FDF0F2;
-            --gold: #C9973A;
-            --gold-light: #F5E4C3;
-            --cream: #FBF7F0;
-            --brown: #5C3D2E;
-            --green: #7A9E7E;
-            --green-light: #D4E8D4;
+            --navy: #2E4A62;
+            --navy-light: #A9C2D6;
+            --navy-pale: #EEF3F7;
+            --gold: #B8863E;
+            --gold-light: #E9D5AC;
+            --cream: #F5F1E8;
+            --brown: #4A3A2A;
+            --forest: #4F6B52;
+            --forest-light: #CFDECF;
         }
 
         html,
@@ -53,11 +53,11 @@
             position: relative;
         }
 
-        /* Background petals */
+        /* Background shapes */
         .bg-petal {
             position: fixed;
             border-radius: 50% 0 50% 0;
-            opacity: 0.13;
+            opacity: 0.12;
             pointer-events: none;
             z-index: 0;
         }
@@ -65,7 +65,7 @@
         .bp1 {
             width: 180px;
             height: 180px;
-            background: var(--rose);
+            background: var(--navy);
             top: -40px;
             right: -40px;
             transform: rotate(20deg);
@@ -83,7 +83,7 @@
         .bp3 {
             width: 90px;
             height: 90px;
-            background: var(--rose);
+            background: var(--navy);
             bottom: 30%;
             right: -20px;
             transform: rotate(10deg);
@@ -93,7 +93,7 @@
         .bp4 {
             width: 60px;
             height: 60px;
-            background: var(--green);
+            background: var(--forest);
             top: 30%;
             left: 5%;
             transform: rotate(45deg);
@@ -123,7 +123,7 @@
             aspect-ratio: 1.6 / 1;
             cursor: pointer;
             transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            filter: drop-shadow(0 8px 24px rgba(92, 61, 46, 0.18));
+            filter: drop-shadow(0 8px 24px rgba(46, 74, 98, 0.2));
             z-index: 2;
         }
 
@@ -138,9 +138,9 @@
         .env-body {
             position: absolute;
             inset: 0;
-            background: linear-gradient(160deg, #F9EFE2 0%, #F0DFC8 100%);
+            background: linear-gradient(160deg, #EDE4D2 0%, #E0D2B4 100%);
             border-radius: 8px;
-            border: 1.5px solid #DEC9A8;
+            border: 1.5px solid #C9B58C;
             z-index: 1;
         }
 
@@ -160,11 +160,11 @@
         .env-flap-front {
             position: absolute;
             inset: 0;
-            background: linear-gradient(170deg, #EDD9BB 0%, #E0C8A0 100%);
+            background: linear-gradient(170deg, #DFCBA2 0%, #D2B989 100%);
             clip-path: polygon(0 0, 100% 0, 50% 100%);
             border-top-left-radius: 8px;
             border-top-right-radius: 8px;
-            border: 1.5px solid #DEC9A8;
+            border: 1.5px solid #C9B58C;
             backface-visibility: hidden;
             z-index: 2;
         }
@@ -172,7 +172,7 @@
         .env-flap-inner {
             position: absolute;
             inset: 0;
-            background: linear-gradient(170deg, #F9EDE3 0%, #F2DCCB 100%);
+            background: linear-gradient(170deg, #EEE2C9 0%, #E4CFAB 100%);
             /* 內側的形狀預設為尖端向上，這樣翻轉 180 度後會與外側重合，展開時則正確向上 */
             clip-path: polygon(0 100%, 100% 100%, 50% 0);
             transform: rotateX(180deg);
@@ -188,7 +188,7 @@
             left: 0;
             right: 0;
             height: 55%;
-            background: linear-gradient(0deg, #D6BA94 0%, #E8D0AE 100%);
+            background: linear-gradient(0deg, #C7AC7E 0%, #DBC196 100%);
             clip-path: polygon(0 100%, 50% 0, 100% 100%);
             z-index: 3;
         }
@@ -199,7 +199,7 @@
             top: 0;
             bottom: 0;
             width: 52%;
-            background: linear-gradient(90deg, #DCBF98 0%, #EDD5B5 100%);
+            background: linear-gradient(90deg, #CEB187 0%, #E0C79E 100%);
             clip-path: polygon(0 0, 100% 50%, 0 100%);
             z-index: 3;
         }
@@ -210,7 +210,7 @@
             top: 0;
             bottom: 0;
             width: 52%;
-            background: linear-gradient(-90deg, #DCBF98 0%, #EDD5B5 100%);
+            background: linear-gradient(-90deg, #CEB187 0%, #E0C79E 100%);
             clip-path: polygon(100% 0, 0 50%, 100% 100%);
             z-index: 3;
         }
@@ -223,18 +223,18 @@
             transform: translateX(-50%);
             width: 52px;
             height: 52px;
-            background: radial-gradient(circle at 40% 35%, #D94F62, #A8293A);
+            background: radial-gradient(circle at 40% 35%, #3E5F7D, #223C52);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px solid #C93B50;
-            box-shadow: 0 2px 8px rgba(168, 41, 58, 0.35);
+            border: 2px solid #2E4A62;
+            box-shadow: 0 2px 8px rgba(34, 60, 82, 0.4);
             z-index: 10;
             transition: transform 0.2s ease;
             font-family: 'Noto Serif TC', serif;
             font-size: 18px;
-            color: rgba(255, 230, 230, 0.95);
+            color: rgba(232, 224, 205, 0.95);
             letter-spacing: 0.02em;
         }
 
@@ -258,7 +258,7 @@
             text-align: center;
             margin-top: 1.2rem;
             font-size: 13px;
-            color: #8C6D56;
+            color: #6E5A3E;
             letter-spacing: 0.08em;
             opacity: 1;
             transition: opacity 0.4s ease;
@@ -301,15 +301,15 @@
             background: white;
             border-radius: 8px;
             overflow: hidden;
-            border: 1px solid #F0DDD5;
-            box-shadow: 0 12px 40px rgba(92, 61, 46, 0.12);
+            border: 1px solid #DDE3E8;
+            box-shadow: 0 12px 40px rgba(46, 74, 98, 0.14);
         }
 
         /* Card header illustration */
         .card-header {
             position: relative;
             height: 200px;
-            background: linear-gradient(135deg, #FDE8EE 0%, #F9D6E2 40%, #FCE8D5 100%);
+            background: linear-gradient(135deg, #E4EDF3 0%, #D8E4EC 40%, #EFE6D3 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -325,13 +325,13 @@
             font-family: 'Noto Serif TC', serif;
             font-size: 26px;
             font-weight: 900;
-            color: var(--rose);
+            color: var(--navy);
             letter-spacing: 0.15em;
             text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
             z-index: 2;
         }
 
-        /* Flower SVG decoration */
+        /* Deco SVG */
         .flower-deco {
             position: absolute;
             width: 100%;
@@ -355,7 +355,7 @@
 
         .card-message {
             font-size: 14px;
-            color: #7A5C4A;
+            color: #5A4A38;
             margin-bottom: 1rem;
             line-height: 1.6;
             text-align: justify;
@@ -375,7 +375,7 @@
 
         .card-divider {
             border: none;
-            border-top: 1px solid var(--rose-light);
+            border-top: 1px solid var(--navy-light);
             margin: 0 0 1.5rem;
         }
 
@@ -394,18 +394,18 @@
         .sig-text {
             font-family: 'Noto Serif TC', serif;
             font-size: 15px;
-            color: var(--rose);
+            color: var(--navy);
             font-weight: 700;
             line-height: 1.5;
         }
 
         .sig-sub {
             font-size: 12px;
-            color: #A07060;
+            color: #7A6A54;
             font-weight: 400;
         }
 
-        /* Floating hearts animation */
+        /* Floating icons animation */
         .hearts-container {
             position: fixed;
             top: 0;
@@ -446,7 +446,7 @@
             text-align: center;
             margin: 0.5rem 0 1rem;
             font-size: 12px;
-            color: #B08878;
+            color: #7C6A50;
             cursor: pointer;
             letter-spacing: 0.05em;
             opacity: 0;
@@ -476,11 +476,11 @@
 
 <body>
 
-    <!-- floating hearts layer -->
+    <!-- floating icons layer -->
     <div class="hearts-container" id="hearts"></div>
 
     <div class="scene">
-        <!-- decorative bg petals -->
+        <!-- decorative bg shapes -->
         <div class="bg-petal bp1"></div>
         <div class="bg-petal bp2"></div>
         <div class="bg-petal bp3"></div>
@@ -490,109 +490,74 @@
         <div class="envelope-wrap">
             <p class="close-hint" id="closeHint" onclick="closeCard()"> ↓ 收回信封</p>
             <!-- Envelope (Move to bottom) -->
-            <div class="envelope" id="envelope" onclick="openCard()" role="button" aria-label="點擊開啟母親節賀卡">
+            <div class="envelope" id="envelope" onclick="openCard()" role="button" aria-label="點擊開啟父親節賀卡">
                 <!-- Card inside (Move to top) -->
                 <div class="card-container" id="cardContainer">
                     <div class="card">
 
-                        <!-- Header with flower illustration -->
+                        <!-- Header with illustration -->
                         <div class="card-header">
                             <svg class="flower-deco" viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg">
-                                <!-- Leaves -->
-                                <ellipse cx="130" cy="140" rx="35" ry="14" fill="#A3C4A8" opacity="0.7"
+                                <!-- Leaves / stems -->
+                                <ellipse cx="130" cy="140" rx="35" ry="14" fill="#8FAE93" opacity="0.6"
                                     transform="rotate(-35 130 140)" />
-                                <ellipse cx="250" cy="145" rx="30" ry="12" fill="#85AD8A" opacity="0.65"
+                                <ellipse cx="250" cy="145" rx="30" ry="12" fill="#799B7E" opacity="0.55"
                                     transform="rotate(30 250 145)" />
-                                <ellipse cx="190" cy="155" rx="20" ry="8" fill="#B5D4BA" opacity="0.6"
+                                <ellipse cx="190" cy="155" rx="20" ry="8" fill="#A3C1A7" opacity="0.5"
                                     transform="rotate(-5 190 155)" />
-                                <!-- Stems -->
-                                <line x1="150" y1="160" x2="155" y2="80" stroke="#85AD8A" stroke-width="2"
+                                <line x1="150" y1="160" x2="155" y2="80" stroke="#799B7E" stroke-width="2"
+                                    opacity="0.55" />
+                                <line x1="195" y1="160" x2="195" y2="60" stroke="#87A78B" stroke-width="2.5"
                                     opacity="0.6" />
-                                <line x1="195" y1="160" x2="195" y2="60" stroke="#92B896" stroke-width="2.5"
-                                    opacity="0.65" />
-                                <line x1="235" y1="160" x2="228" y2="85" stroke="#85AD8A" stroke-width="2"
-                                    opacity="0.6" />
+                                <line x1="235" y1="160" x2="228" y2="85" stroke="#799B7E" stroke-width="2"
+                                    opacity="0.55" />
 
-                                <!-- Flower 1 (left) -->
-                                <g transform="translate(155,80)">
-                                    <ellipse cx="0" cy="-18" rx="10" ry="18" fill="#F4A7B4" opacity="0.85" />
-                                    <ellipse cx="0" cy="-18" rx="10" ry="18" fill="#F4A7B4" opacity="0.85"
-                                        transform="rotate(45)" />
-                                    <ellipse cx="0" cy="-18" rx="10" ry="18" fill="#EE8EA0" opacity="0.75"
+                                <!-- Tie shape (left) -->
+                                <g transform="translate(155,75)">
+                                    <polygon points="-8,-14 8,-14 5,-2 0,6 -5,-2" fill="#2E4A62" opacity="0.8" />
+                                    <polygon points="-5,-2 5,-2 8,40 0,50 -8,40" fill="#3E5F7D" opacity="0.75" />
+                                    <circle cx="0" cy="-18" r="6" fill="#B8863E" opacity="0.85" />
+                                </g>
+
+                                <!-- Compass / star (center, big) -->
+                                <g transform="translate(195,55)">
+                                    <circle cx="0" cy="0" r="24" fill="none" stroke="#B8863E" stroke-width="2"
+                                        opacity="0.7" />
+                                    <circle cx="0" cy="0" r="16" fill="none" stroke="#2E4A62" stroke-width="1.5"
+                                        opacity="0.5" />
+                                    <polygon points="0,-20 4,-4 20,0 4,4 0,20 -4,4 -20,0 -4,-4" fill="#B8863E"
+                                        opacity="0.85" />
+                                    <circle cx="0" cy="0" r="5" fill="#2E4A62" />
+                                </g>
+
+                                <!-- Pipe / leaf shape (right) -->
+                                <g transform="translate(228,90)">
+                                    <ellipse cx="0" cy="-16" rx="9" ry="16" fill="#87A78B" opacity="0.75" />
+                                    <ellipse cx="0" cy="-16" rx="9" ry="16" fill="#9DBE9F" opacity="0.65"
                                         transform="rotate(90)" />
-                                    <ellipse cx="0" cy="-18" rx="10" ry="18" fill="#F4A7B4" opacity="0.85"
-                                        transform="rotate(135)" />
-                                    <ellipse cx="0" cy="-18" rx="10" ry="18" fill="#EE8EA0" opacity="0.7"
+                                    <ellipse cx="0" cy="-16" rx="9" ry="16" fill="#87A78B" opacity="0.75"
                                         transform="rotate(180)" />
-                                    <ellipse cx="0" cy="-18" rx="10" ry="18" fill="#F4A7B4" opacity="0.8"
-                                        transform="rotate(225)" />
-                                    <ellipse cx="0" cy="-18" rx="10" ry="18" fill="#EE8EA0" opacity="0.75"
+                                    <ellipse cx="0" cy="-16" rx="9" ry="16" fill="#9DBE9F" opacity="0.65"
                                         transform="rotate(270)" />
-                                    <ellipse cx="0" cy="-18" rx="10" ry="18" fill="#F4A7B4" opacity="0.8"
-                                        transform="rotate(315)" />
-                                    <circle cx="0" cy="0" r="10" fill="#F9D55A" />
-                                    <circle cx="0" cy="0" r="6" fill="#EDBD3A" />
+                                    <circle cx="0" cy="0" r="9" fill="#B8863E" opacity="0.85" />
+                                    <circle cx="0" cy="0" r="5" fill="#9A6E2F" />
                                 </g>
 
-                                <!-- Flower 2 (center, big) -->
-                                <g transform="translate(195,58)">
-                                    <ellipse cx="0" cy="-20" rx="12" ry="20" fill="#E87D94" opacity="0.82" />
-                                    <ellipse cx="0" cy="-20" rx="12" ry="20" fill="#F0A0B4" opacity="0.78"
-                                        transform="rotate(40)" />
-                                    <ellipse cx="0" cy="-20" rx="12" ry="20" fill="#E87D94" opacity="0.82"
-                                        transform="rotate(80)" />
-                                    <ellipse cx="0" cy="-20" rx="12" ry="20" fill="#F0A0B4" opacity="0.78"
-                                        transform="rotate(120)" />
-                                    <ellipse cx="0" cy="-20" rx="12" ry="20" fill="#E87D94" opacity="0.82"
-                                        transform="rotate(160)" />
-                                    <ellipse cx="0" cy="-20" rx="12" ry="20" fill="#F0A0B4" opacity="0.78"
-                                        transform="rotate(200)" />
-                                    <ellipse cx="0" cy="-20" rx="12" ry="20" fill="#E87D94" opacity="0.82"
-                                        transform="rotate(240)" />
-                                    <ellipse cx="0" cy="-20" rx="12" ry="20" fill="#F0A0B4" opacity="0.78"
-                                        transform="rotate(280)" />
-                                    <ellipse cx="0" cy="-20" rx="12" ry="20" fill="#E87D94" opacity="0.82"
-                                        transform="rotate(320)" />
-                                    <circle cx="0" cy="0" r="12" fill="#F9D55A" />
-                                    <circle cx="0" cy="0" r="7" fill="#EDBD3A" />
-                                </g>
+                                <!-- Small scattered accents -->
+                                <circle cx="80" cy="40" r="5" fill="#A9C2D6" opacity="0.5" />
+                                <circle cx="88" cy="52" r="3" fill="#2E4A62" opacity="0.4" />
+                                <circle cx="300" cy="35" r="4" fill="#A9C2D6" opacity="0.5" />
+                                <circle cx="315" cy="50" r="3" fill="#2E4A62" opacity="0.4" />
+                                <circle cx="60" cy="90" r="4" fill="#B8863E" opacity="0.4" />
+                                <circle cx="320" cy="90" r="5" fill="#B8863E" opacity="0.4" />
 
-                                <!-- Flower 3 (right) -->
-                                <g transform="translate(228,85)">
-                                    <ellipse cx="0" cy="-16" rx="9" ry="16" fill="#F4B8C8" opacity="0.82" />
-                                    <ellipse cx="0" cy="-16" rx="9" ry="16" fill="#EDA0B2" opacity="0.75"
-                                        transform="rotate(45)" />
-                                    <ellipse cx="0" cy="-16" rx="9" ry="16" fill="#F4B8C8" opacity="0.82"
-                                        transform="rotate(90)" />
-                                    <ellipse cx="0" cy="-16" rx="9" ry="16" fill="#EDA0B2" opacity="0.75"
-                                        transform="rotate(135)" />
-                                    <ellipse cx="0" cy="-16" rx="9" ry="16" fill="#F4B8C8" opacity="0.82"
-                                        transform="rotate(180)" />
-                                    <ellipse cx="0" cy="-16" rx="9" ry="16" fill="#EDA0B2" opacity="0.75"
-                                        transform="rotate(225)" />
-                                    <ellipse cx="0" cy="-16" rx="9" ry="16" fill="#F4B8C8" opacity="0.82"
-                                        transform="rotate(270)" />
-                                    <ellipse cx="0" cy="-16" rx="9" ry="16" fill="#EDA0B2" opacity="0.75"
-                                        transform="rotate(315)" />
-                                    <circle cx="0" cy="0" r="9" fill="#F9D55A" />
-                                    <circle cx="0" cy="0" r="5" fill="#EDBD3A" />
-                                </g>
-
-                                <!-- Small scattered petals -->
-                                <circle cx="80" cy="40" r="5" fill="#F4B8C8" opacity="0.5" />
-                                <circle cx="88" cy="52" r="3" fill="#E87D94" opacity="0.4" />
-                                <circle cx="300" cy="35" r="4" fill="#F4A7B4" opacity="0.5" />
-                                <circle cx="315" cy="50" r="3" fill="#E87D94" opacity="0.4" />
-                                <circle cx="60" cy="90" r="4" fill="#F9D55A" opacity="0.45" />
-                                <circle cx="320" cy="90" r="5" fill="#F9D55A" opacity="0.4" />
-
-                                <!-- Small hearts -->
-                                <text x="70" y="65" font-size="14" fill="#E87D94" opacity="0.45"
-                                    text-anchor="middle">♡</text>
-                                <text x="310" y="70" font-size="12" fill="#E87D94" opacity="0.4"
-                                    text-anchor="middle">♡</text>
+                                <!-- Small stars -->
+                                <text x="70" y="65" font-size="14" fill="#B8863E" opacity="0.45"
+                                    text-anchor="middle">★</text>
+                                <text x="310" y="70" font-size="12" fill="#B8863E" opacity="0.4"
+                                    text-anchor="middle">★</text>
                             </svg>
-                            <div class="card-header-title">母親節快樂</div>
+                            <div class="card-header-title">父親節快樂</div>
                         </div>
 
                         <!-- Card body text -->
@@ -604,21 +569,14 @@
                             <div class="card-signature">
                                 <svg class="sig-flower" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
                                     <g transform="translate(18,18)">
-                                        <ellipse cx="0" cy="-10" rx="5" ry="10" fill="#E87D94" />
-                                        <ellipse cx="0" cy="-10" rx="5" ry="10" fill="#EDA0B2" transform="rotate(60)" />
-                                        <ellipse cx="0" cy="-10" rx="5" ry="10" fill="#E87D94"
-                                            transform="rotate(120)" />
-                                        <ellipse cx="0" cy="-10" rx="5" ry="10" fill="#EDA0B2"
-                                            transform="rotate(180)" />
-                                        <ellipse cx="0" cy="-10" rx="5" ry="10" fill="#E87D94"
-                                            transform="rotate(240)" />
-                                        <ellipse cx="0" cy="-10" rx="5" ry="10" fill="#EDA0B2"
-                                            transform="rotate(300)" />
-                                        <circle cx="0" cy="0" r="6" fill="#F9D55A" />
+                                        <circle cx="0" cy="0" r="15" fill="none" stroke="#B8863E" stroke-width="1.5" />
+                                        <polygon points="0,-11 2.5,-2.5 11,0 2.5,2.5 0,11 -2.5,2.5 -11,0 -2.5,-2.5"
+                                            fill="#2E4A62" />
+                                        <circle cx="0" cy="0" r="3" fill="#B8863E" />
                                     </g>
                                 </svg>
                                 <div>
-                                    <div class="sig-text">獻上滿滿的愛 ♡</div>
+                                    <div class="sig-text">獻上滿滿的敬愛 ★</div>
                                     <div class="sig-sub">寶貝綸親筆</div>
                                 </div>
                             </div>
@@ -634,9 +592,9 @@
                     <div class="env-flap-inner"></div>
                     <div class="env-flap-front"></div>
                 </div>
-                <div class="wax-seal">♡</div>
+                <div class="wax-seal">★</div>
             </div>
-            <p class="peek-hint" id="peekHint">✦ 給親愛的媽 。 輕觸打開 ✦</p>
+            <p class="peek-hint" id="peekHint">✦ 給親愛的爸 。 輕觸打開 ✦</p>
         </div>
     </div>
 
@@ -646,8 +604,8 @@
 
         // Content management
         const config = {
-            mom: { file: 'mom.md', hint: '✦ 給親愛的媽 。 輕觸打開 ✦' },
-            grandma: { file: 'grandma.md', hint: '✦ 給親愛的外婆 。 輕觸打開 ✦' }
+            dad: { file: 'dad.md', hint: '✦ 給親愛的爸 。 輕觸打開 ✦' },
+            grandpa: { file: 'grandpa.md', hint: '✦ 給親愛的爺爺 。 輕觸打開 ✦' }
         };
 
         async function loadContent() {
@@ -659,7 +617,7 @@
             if (!settings) {
                 envWrap.style.display = 'none';
                 const msg = document.createElement('div');
-                msg.style.cssText = "position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:#C8586A; font-family:'Noto Serif TC',serif; font-size:18px; font-weight:700; letter-spacing:0.1em; z-index:100; text-align:center; line-height:1.8;";
+                msg.style.cssText = "position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:#2E4A62; font-family:'Noto Serif TC',serif; font-size:18px; font-weight:700; letter-spacing:0.1em; z-index:100; text-align:center; line-height:1.8;";
                 msg.innerHTML = "這是一份專屬的賀卡<br>請使用正確的連結開啟";
                 document.body.appendChild(msg);
                 return;
@@ -730,8 +688,8 @@
 
         function launchHearts() {
             const container = document.getElementById('hearts');
-            const symbols = ['♡', '❀', '✿', '♡', '❁', '♡'];
-            const colors = ['#E87D94', '#F4A7B4', '#C9973A', '#D94F62', '#F9D55A', '#A3C4A8'];
+            const symbols = ['★', '✦', '♦', '★', '✧', '♦'];
+            const colors = ['#2E4A62', '#3E5F7D', '#B8863E', '#4F6B52', '#A9C2D6', '#9A6E2F'];
             const count = 18;
 
             for (let i = 0; i < count; i++) {
